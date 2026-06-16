@@ -22,7 +22,7 @@ def cmd_read(args: argparse.Namespace) -> int:
             for row in feta.files.read_csv(path):
                 print(row)
         else:
-            print(path.read_text(encoding="utf-8"))
+            print(path.read_text(encoding="utf-8"), end="")
 
     return SUCCESS
 
