@@ -12,6 +12,7 @@ readme = "README.md"
 license-files = ["LICENSE"]
 requires-python = ">=3.13"
 dependencies = []
+scripts.feta = "feta.cli:main"
 
 [dependency-groups]
 dev = [
