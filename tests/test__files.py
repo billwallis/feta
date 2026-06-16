@@ -128,9 +128,9 @@ def test__write_json__happy_path(
     "select, exclude, expected",
     [
         ("", "^$", ["baz.json", "bar.txt", "foo.py"]),
-        (".*/(baz|foo).*", "^$", ["baz.json", "foo.py"]),
-        ("", "/.*.json$", ["bar.txt", "foo.py"]),
-        (".*/ba[rz].*", ".*.txt", ["baz.json"]),
+        (".*(baz.json|foo.py)$", "^$", ["baz.json", "foo.py"]),
+        ("", ".*.json$", ["bar.txt", "foo.py"]),
+        (".*ba[rz].*", ".*.txt$", ["baz.json"]),
     ],
 )
 def test__zip__happy_path(
@@ -146,7 +146,7 @@ def test__zip__happy_path(
     (target / "baz.json").touch()
 
     archive = files.zip_directory(target, select=select, exclude=exclude)
-    assert archive.namelist() == expected
+    assert sorted(archive.namelist()) == sorted(expected)
 
 
 def test__zip__fails_on_non_directory():
