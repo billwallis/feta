@@ -5,13 +5,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "feta"
-version = "0.0.0"
+version = "0.0.1"
 description = "Personal command line utilities."
 authors = [{name = "billwallis"}]
 readme = "README.md"
 license-files = ["LICENSE"]
 requires-python = ">=3.13"
 dependencies = []
+scripts.feta = "feta.cli:main"
 
 [dependency-groups]
 dev = [
