@@ -4,12 +4,27 @@ import argparse
 import importlib.metadata
 import pathlib
 import re
+import textwrap
 from collections.abc import Sequence
 
 import feta.files
 
 SUCCESS = 0
 FAILURE = 1
+
+# https://www.asciiart.eu/text-to-ascii-art  (Big Money-ne)
+LOGO = textwrap.dedent(
+    f"""
+      /$$$$$$            /$$
+     /$$__  $$          | $$
+    | $$  \\__//$$$$$$  /$$$$$$    /$$$$$$
+    | $$$$   /$$__  $$|_  $$_/   |____  $$
+    | $$_/  | $$$$$$$$  | $$      /$$$$$$$
+    | $$    | $$_____/  | $$ /$$ /$$__  $$
+    | $$    |  $$$$$$$  |  $$$$/|  $$$$$$$
+    |__/     \\_______/   \\___/   \\_______/
+    """
+)
 
 
 def _get_version() -> str:
