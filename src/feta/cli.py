@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import importlib.metadata
 import pathlib
-import re
+import shutil
 import textwrap
 from collections.abc import Sequence
 
@@ -69,6 +69,15 @@ def _add_argument__select_exclude(parser: argparse.ArgumentParser) -> None:
     )
 
 
+def cmd_which(args: argparse.Namespace) -> int:
+    try:
+        print(shutil.which(args.cmd))
+        return SUCCESS
+    except Exception as e:
+        print(f"error: {e}")
+        return FAILURE
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """
     Parse the arguments and run the command.
@@ -90,11 +99,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser__zip.add_argument("target")
     _add_argument__select_exclude(parser__zip)
 
+    parser__which = subparsers.add_parser("which")
+    parser__which.add_argument("cmd")
+
     args = parser.parse_args(argv)
     if args.command == "read":
         return cmd_read(args)
     if args.command == "zip":
         return cmd_zip(args)
+    if args.command == "which":
+        return cmd_which(args)
 
     parser.print_help()
     return SUCCESS
