@@ -2,7 +2,7 @@ cfgv==3.5.0
 covdefaults==2.3.0
 coverage==7.14.1
 distlib==0.4.3
-filelock==3.29.4
+filelock==4.2.1
 identify==2.6.19
 iniconfig==2.3.0
 nodeenv==1.10.0
